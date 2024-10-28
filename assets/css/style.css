@@ -4,7 +4,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #202a44;
+  background-color: #06402B;
   padding: 10px 0;
   z-index: 100;
   font-size: 16px;
@@ -59,7 +59,7 @@ nav ul li a:hover {
     top: 60px;
     left: 0;
     right: 0;
-    background-color: #202a44;
+    background-color: #06402B;
     display: none;
     flex-direction: column;
     width: 100%;
@@ -458,7 +458,7 @@ nav ul li a:hover {
   max-width: 1200px;
   margin: 50px auto;
   padding: 30px;
-  background-color: #202a44; /* Added background for contrast */
+  background-color: #06402B; /* Added background for contrast */
 }
 
 /* Left section for the profile picture and buttons */
@@ -824,7 +824,7 @@ nav ul li a:hover {
 
 .vote_modal-content {
   background-color: white;
-  color: #202a44;
+  color: #06402B;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -905,7 +905,7 @@ nav ul li a:hover {
 .edit-profile-container .form-group select {
   width: 100%; /* Full width for input fields */
   padding: 0.5rem; /* Reduce padding */
-  border: 1px solid #202a44;
+  border: 1px solid #06402B;
   font-size: 0.9rem; /* Reduce font size in input fields */
   transition: border 0.3s;
 }
@@ -968,7 +968,7 @@ nav ul li a:hover {
 
 /* Candidate Card */
 .candidate-card {
-  background-color: #202a44;
+  background-color: #06402B;
   width: 400px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -985,7 +985,7 @@ nav ul li a:hover {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 4px solid #202a44;
+  border: 4px solid #06402B;
   text-align: center;
 }
 
@@ -1047,7 +1047,7 @@ footer {
 body {
   font-size: calc(14px + 0.5vw);
   font-family: 'Poppins', sans-serif;
-  background-color: #202a44;
+  background-color: #06402B;
   color: #fff;
   min-height: 100vh;
   display: flex;
