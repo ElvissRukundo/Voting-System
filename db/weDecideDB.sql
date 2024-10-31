@@ -36,25 +36,24 @@ CREATE TABLE candidates (
     candidates_name VARCHAR(100) NOT NULL,
     date_of_birth DATE NOT NULL,
     candidate_image VARCHAR(255) NOT NULL,
-    political_party_id INT NOT NULL, -- Foreign key referencing party ID
-    political_party_name VARCHAR(100) NOT NULL, -- Additional column for display
+    political_party_id INT NOT NULL,
+    political_party_name VARCHAR(100) NOT NULL,
     party_logo VARCHAR(255) NOT NULL,
     FOREIGN KEY (political_party_id) REFERENCES political_parties(id) ON DELETE CASCADE
 );
 
--- Insert new candidates
 INSERT INTO candidates (candidates_name, date_of_birth, candidate_image, political_party_id, political_party_name, party_logo) VALUES
-('Fred Mwesigye', '1976-09-09', 'assets/images/fred.png', 3, 'Independent', 'assets/images/ind.png'), -- Independent
-('Henry Tumukunde', '1959-02-28', 'assets/images/tumukunde.png', 3, 'Independent', 'assets/images/ind.png'), -- Independent
-('John Katumba', '1996-02-22', 'assets/images/katumba.png', 3, 'Independent', 'assets/images/ind.png'), -- Independent
-('Joseph Kabuleta', '1972-03-01', 'assets/images/kabuleta.png', 3, 'Independent', 'assets/images/ind.png'), -- Independent
-('Mugisha Muntu', '1961-10-07', 'assets/images/muntu.png', 1, 'Alliance for National Transformation', 'assets/images/ant.png'), -- ANT
-('Nancy Kalembe', '1980-07-0', 'assets/images/nancy.png', 3, 'Independent', 'assets/images/ind.png'), -- Independent
-('Norbert Mao', '1967-03-12', 'assets/images/mao.png', 2, 'Democratic Party', 'assets/images/dp.png'), -- DP
-('Patrick Oboi Amuriat', '1958-02-09', 'assets/images/amuriat.png', 4, 'Forum for Democratic Change', 'assets/images/fdc.png'), -- FDC
-('Robert Kyagulanyi', '1982-02-12', 'assets/images/kyagulanyi.png', 6, 'National Unity Platform', 'assets/images/nup.png'), -- NUP
-('Willy Mayambala', '1980-07-15', 'assets/images/mayambala.png', 3, 'Independent', 'assets/images/ind.png'), -- Independent
-('Yoweri Museveni', '1944-08-15', 'assets/images/museveni.png', 5, 'National Resistance Movement', 'assets/images/nrm.png'); -- NRM
+('Fred Mwesigye', '1976-09-09', 'assets/images/fred.png', 3, 'Independent', 'assets/images/ind.png'),
+('Henry Tumukunde', '1959-02-28', 'assets/images/tumukunde.png', 3, 'Independent', 'assets/images/ind.png'),
+('John Katumba', '1996-02-22', 'assets/images/katumba.png', 3, 'Independent', 'assets/images/ind.png'),
+('Joseph Kabuleta', '1972-03-01', 'assets/images/kabuleta.png', 3, 'Independent', 'assets/images/ind.png'),
+('Mugisha Muntu', '1961-10-07', 'assets/images/muntu.png', 1, 'Alliance for National Transformation', 'assets/images/ant.png'),
+('Nancy Kalembe', '1980-07-0', 'assets/images/nancy.png', 3, 'Independent', 'assets/images/ind.png'),
+('Norbert Mao', '1967-03-12', 'assets/images/mao.png', 2, 'Democratic Party', 'assets/images/dp.png'),
+('Patrick Oboi Amuriat', '1958-02-09', 'assets/images/amuriat.png', 4, 'Forum for Democratic Change', 'assets/images/fdc.png'),
+('Robert Kyagulanyi', '1982-02-12', 'assets/images/kyagulanyi.png', 6, 'National Unity Platform', 'assets/images/nup.png'),
+('Willy Mayambala', '1980-07-15', 'assets/images/mayambala.png', 3, 'Independent', 'assets/images/ind.png'),
+('Yoweri Museveni', '1944-08-15', 'assets/images/museveni.png', 5, 'National Resistance Movement', 'assets/images/nrm.png');
 
 CREATE TABLE votes (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,7 +82,7 @@ CREATE TABLE password_resets (
 CREATE TABLE admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL -- Store a hashed password for security
+    password VARCHAR(255) NOT NULL
 );
 
 INSERT INTO admins (username, password) VALUES
