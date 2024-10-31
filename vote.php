@@ -2,24 +2,20 @@
 session_start();
 
 // Database connection
-$servername = "localhost"; // or "127.0.0.1"
+$servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "weDecideDB"; // Your database name
+$dbname = "weDecideDB";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check for vote error or success message
 $vote_error = isset($_SESSION['vote_error']) ? $_SESSION['vote_error'] : '';
 $vote_success = isset($_SESSION['vote_success']) ? $_SESSION['vote_success'] : '';
 
-// Clear the messages after they are displayed
 unset($_SESSION['vote_error']);
 unset($_SESSION['vote_success']);
 ?>
@@ -40,11 +36,7 @@ unset($_SESSION['vote_success']);
   </head>
   <body>
   <?php include 'include/header.php'?>
-
-    <!-- Page Content -->
     <div class="container">
-
-      <!-- Voting Form -->
        <h2>Vote for your candidate</h2>
       <form action="submit_vote.php" method="post">
   <table class="candidate-table">
@@ -57,12 +49,10 @@ unset($_SESSION['vote_success']);
     </thead>
     <tbody>
       <?php
-      // Fetch candidates from the database
       $sql = "SELECT id, candidates_name, candidate_image, political_party_name, party_logo FROM candidates";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
-          // Output data of each row
           while($row = $result->fetch_assoc()) {
               echo "<tr>";
               echo "<td>" . htmlspecialchars($row['candidates_name']) . "</td>";
@@ -77,13 +67,11 @@ unset($_SESSION['vote_success']);
     </tbody>
   </table>
 
-  <!-- Submit Vote Button -->
   <button class="vote-button" type="submit">Submit Vote</button>
 </form>
 
     </div>
 
-    <!-- Modal Popup for Error -->
     <?php if ($vote_error): ?>
     <div class="vote_modal" id="errorModal">
       <div class="vote_modal-content">
@@ -93,7 +81,6 @@ unset($_SESSION['vote_success']);
     </div>
     <?php endif; ?>
 
-    <!-- Modal Popup for Success -->
     <?php if ($vote_success): ?>
     <div class="vote_modal" id="successModal">
       <div class="vote_modal-content">
@@ -106,7 +93,6 @@ unset($_SESSION['vote_success']);
     <script src="assets/js/script.js"></script>
 
     <script>
-      // Show modal on page load if error or success exists
       window.onload = function() {
         const errorModal = document.getElementById("errorModal");
         const successModal = document.getElementById("successModal");
@@ -120,7 +106,6 @@ unset($_SESSION['vote_success']);
         }
       };
 
-      // Close modal function
       function closeModal() {
         const modals = document.querySelectorAll(".vote_modal");
         modals.forEach(vote_modal => {
@@ -131,4 +116,3 @@ unset($_SESSION['vote_success']);
   </body>
 </html>
 
-<?php include('include/footer.php');?>
