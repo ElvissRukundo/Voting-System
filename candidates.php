@@ -1,19 +1,14 @@
 <?php
-// Connect to the database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "weDecideDB";
-
-// Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch candidate details
 $sql = "SELECT c.candidates_name, c.date_of_birth, c.candidate_image, p.fullname AS party_name, p.acronym AS party_acronym, p.logo AS party_logo
         FROM candidates c
         INNER JOIN political_parties p ON c.political_party = p.id";
@@ -30,9 +25,7 @@ $result = $conn->query($sql);
 <div class="candidates-container">
     <?php
     if ($result->num_rows > 0) {
-        // Loop through each candidate
         while ($row = $result->fetch_assoc()) {
-            // Calculate the candidate's age
             $birthdate = new DateTime($row['date_of_birth']);
             $today = new DateTime('today');
             $age = $today->diff($birthdate)->y;
@@ -54,7 +47,5 @@ $result = $conn->query($sql);
 </html>
 
 <?php
-// Close the connection
 $conn->close();
 ?>
-<?php include('include/footer.php');?>
