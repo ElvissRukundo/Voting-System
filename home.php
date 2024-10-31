@@ -1,27 +1,19 @@
 <?php
 session_start();
 
-// Redirect if not logged in
 if (!isset($_SESSION['voter_id'])) {
     header("Location: login.php");
     exit();
 }
-
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "weDecideDB";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Fetch user data from the database
 $voter_id = $_SESSION['voter_id'];
 $stmt = $conn->prepare("SELECT first_name, last_name, gender, dob, phone, email, nin, profile_pic FROM voters WHERE voter_id = ?");
 $stmt->bind_param("s", $voter_id);
@@ -30,14 +22,11 @@ $stmt->bind_result($first_name, $last_name, $gender, $dob, $phone, $email, $nin,
 $stmt->fetch();
 $stmt->close();
 $conn->close();
-
-// Calculate age from the date of birth
 $birthdate = new DateTime($dob);
 $today = new DateTime();
 $age = $today->diff($birthdate)->y;
 
-// Default to a placeholder image if no profile picture is available
-$profile_pic = $profile_pic ? $profile_pic : 'assets/images/default_profile.png'; // Use a default image if not set
+$profile_pic = $profile_pic ? $profile_pic : 'assets/images/default_profile.png';
 ?>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,10 +36,9 @@ $profile_pic = $profile_pic ? $profile_pic : 'assets/images/default_profile.png'
   <body>
   <?php include 'include/header.php'?>
 
-    <!-- Main content section -->
     <div class="profile-container">
       <div class="profile-left">
-        <img src="<?php echo $profile_pic; ?>" alt="Profile Picture" class="profile-pic" />
+        <img src="<?php echo $profile_pic;?>" alt="Profile Picture" class="profile-pic" />
         <div class="buttons-container">
         <a href="edit_profile.php"><button class="edit-profile-btn"><i class="fas fa-edit"></i> Edit Profile</button> </a>
         <a href="logout.php"><button class="logout-btn"><i class="fas fa-sign-out"></i> Logout</button></a>
@@ -73,4 +61,3 @@ $profile_pic = $profile_pic ? $profile_pic : 'assets/images/default_profile.png'
     <script src="assets/js/script.js"></script>
   </body>
 </html>
-<?php include('include/footer.php');?>
