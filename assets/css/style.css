@@ -1,10 +1,9 @@
-/* Header Styles */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #06402B;
+  background-color: #fff;
   padding: 10px 0;
   z-index: 100;
   font-size: 16px;
@@ -22,7 +21,7 @@ nav {
 nav .logo {
   font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: #000;
 }
 
 nav ul {
@@ -35,22 +34,21 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
-  color: white;
+  color: #000;
   font-weight: 600;
   padding: 8px 16px;
   transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-  color: #007bff;
+  color: #1da1f2;
 }
 
-/* Hide the menu and show the burger icon on small screens */
 .burger {
   display: none;
   cursor: pointer;
   font-size: 30px;
-  color: white;
+  color: #000;
 }
 
 @media (max-width: 768px) {
@@ -59,7 +57,7 @@ nav ul li a:hover {
     top: 60px;
     left: 0;
     right: 0;
-    background-color: #06402B;
+    background-color: #fff;
     display: none;
     flex-direction: column;
     width: 100%;
@@ -96,6 +94,10 @@ nav ul li a:hover {
   gap: 40px;
 }
 
+.container h1{
+  color: #000;
+}
+
 .image-section img {
   max-width: 100%;
   height: 40vh;
@@ -111,12 +113,13 @@ nav ul li a:hover {
 .text-section h2 {
   font-size: 24px;
   font-weight: 400;
+  color: #000;
 }
 
 .text-section h1 {
   font-size: 48px;
   margin-bottom: 20px;
-  color: #007bff;
+  color: #000;
 }
 
 .buttons {
@@ -131,7 +134,7 @@ nav ul li a:hover {
   text-decoration: none;
   font-size: 16px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #000;
   width: 150px;
   text-align: center;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -215,6 +218,7 @@ nav ul li a:hover {
 .register_form {
   flex: 1;
   padding: 40px;
+  color: #000;
 }
 
 .register_form h2 {
@@ -222,6 +226,7 @@ nav ul li a:hover {
   font-size: 24px;
   font-weight: 600;
   text-align: center;
+  color: #000;
 }
 
 .register_form form {
@@ -239,10 +244,12 @@ nav ul li a:hover {
   width: 100%;
   border: none;
   font-size: 14px;
-  color: #fff;
+  color: #000;
 }
+
 .register_form .input-group {
-  width: 48%; /* Two columns */
+  border: none;
+  width: 48%;
   margin-bottom: 20px;
 }
 
@@ -251,7 +258,7 @@ nav ul li a:hover {
 }
 
 .register_form .input-group.half-width {
-  width: 48%; /* Half width for grouped items */
+  width: 48%; 
   margin-bottom: 20px;
 }
 
@@ -261,21 +268,28 @@ nav ul li a:hover {
   width: 100%;
   height: 50px;
   padding: 12px;
-  border: none;
-  background-color: #fff;
   font-size: 14px;
+  color: #333;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #f0f0f0;
   color: #333;
 }
 
 .register_form .input-group button {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background-color: #000;
   border: none;
   color: white;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.register_form .input-group button:hover {
+  background-color: #1da1f2;
 }
 
 /* Responsive */
@@ -311,7 +325,6 @@ nav ul li a:hover {
   }
 }
 
-/* Modal Styles */
 .modal {
   display: none;
   position: fixed;
@@ -335,7 +348,7 @@ nav ul li a:hover {
 }
 
 .modal-content a {
-  background-color: #007bff;
+  background-color: #000;
   color: #fff;
   text-decoration: none;
   padding: 5px;
@@ -361,15 +374,14 @@ nav ul li a:hover {
   text-align: center;
 }
 
-/* Login page */
 .login-container {
+  color: #000;
   display: flex;
   overflow: hidden;
   max-width: 900px;
   width: 100%;
 }
 
-/* Left section */
 .login-left {
   flex: 1;
   display: flex;
@@ -382,7 +394,6 @@ nav ul li a:hover {
   height: auto;
 }
 
-/* Right section */
 .login-right {
   flex: 1;
   padding: 50px;
@@ -412,7 +423,7 @@ nav ul li a:hover {
 .login-container .input-group button {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background-color: #000;
   border: none;
   color: white;
   font-size: 16px;
@@ -421,21 +432,21 @@ nav ul li a:hover {
 }
 
 .login-container .input-group button:hover {
-  background-color: #0056b3;
+  background-color: #1da1f2;
 }
 
 .forgot-links {
   text-decoration: none;
-  font-size: 14px;;
+  font-size: 14px;
+  color: #000;
 }
 
 .forgot-links a {
   text-decoration: none;
-  color: #007bff;
+  color: #1da1f2;
   font-size: 14px;;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
@@ -450,7 +461,7 @@ nav ul li a:hover {
     padding: 20px;
   }
 }
-/* Profile Container */
+
 .profile-container {
   display: flex;
   justify-content: center;
@@ -458,10 +469,9 @@ nav ul li a:hover {
   max-width: 1200px;
   margin: 50px auto;
   padding: 30px;
-  background-color: #06402B; /* Added background for contrast */
+  background-color: #fff;
 }
 
-/* Left section for the profile picture and buttons */
 .profile-left {
   flex-basis: 35%;
   text-align: center;
@@ -476,7 +486,6 @@ nav ul li a:hover {
   margin-bottom: 20px;
 }
 
-/* Container for the buttons */
 .buttons-container {
   display: flex;
   flex-direction: column;
@@ -485,13 +494,13 @@ nav ul li a:hover {
 }
 
 .edit-profile-btn {
-  background-color: #007bff;
+  background-color: #000;
   color: #fff;
   padding: 10px;
   border: none;
   margin-bottom: 10px;
-  width: 250px; /* Full width for small screens */
-  max-width: 250px; /* Limit max width */
+  width: 250px;
+  max-width: 250px;
 }
 
 .logout-btn {
@@ -504,7 +513,6 @@ nav ul li a:hover {
   max-width: 250px;
 }
 
-/* Profile Info Section */
 .profile-right {
   flex-basis: 65%;
   padding-left: 30px;
@@ -521,14 +529,9 @@ nav ul li a:hover {
 .profile-info p {
   font-size: 16px;
   margin-bottom: 15px;
-  color: #fff;
+  color: #333;
 }
 
-.profile-info p strong {
-  color: #fff;
-}
-
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .profile-container {
     flex-direction: column;
@@ -543,7 +546,6 @@ nav ul li a:hover {
     margin-bottom: 20px;
   }
 
-  /* Adjust buttons layout on small screens */
   .buttons-container {
     flex-direction: column;
     width: 100%;
@@ -552,7 +554,7 @@ nav ul li a:hover {
 
   .edit-profile-btn,
   .logout-btn {
-    width: 100%; /* Ensure full width on smaller screens */
+    width: 100%;
     margin-bottom: 10px;
   }
 
@@ -562,7 +564,6 @@ nav ul li a:hover {
   }
 }
 
-/* About Page */
 .about-section {
   display: flex;
   justify-content: center;
@@ -579,18 +580,17 @@ nav ul li a:hover {
   padding-left: 20px;
 }
 
-.about-title h2 {
+.about-container h2 {
   border-left: 2px solid #fff;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 8rem;
+  font-size: 4rem;
   margin-right: 30px;
-  color: #fff;
+  color: #000;
   font-weight: bold;
 }
 
 .about-content {
-  max-width: 600px;
+  max-width: 100%;
+  color: #000;
 }
 
 .about-content p {
@@ -600,7 +600,18 @@ nav ul li a:hover {
   margin: 0;
 }
 
-/* Contact Page */
+
+@media (max-width: 768px) {
+  .about-container {
+    margin-top: 350px;
+    max-width: 100%;
+  }
+
+  .about-container h2 {
+    font-size: 20px;
+  }
+}
+
 .contact_container {
   display: flex;
   overflow: hidden;
@@ -627,10 +638,16 @@ nav ul li a:hover {
 }
 
 .contact_form h2 {
+  color: #000;
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: 600;
   text-align: center;
+}
+
+.contact_form label {
+  color: #000;
+  font-size: 16px;
 }
 
 .contact_form form {
@@ -640,7 +657,7 @@ nav ul li a:hover {
 }
 
 .contact_form .input-group {
-  width: 48%; /* Two columns */
+  width: 48%;
   margin-bottom: 20px;
 }
 
@@ -666,7 +683,7 @@ nav ul li a:hover {
 .contact_form .input-group button {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background-color: #000;
   border: none;
   color: white;
   font-size: 16px;
@@ -683,7 +700,6 @@ nav ul li a:hover {
   border-radius: 8px;
 }
 
-/* Responsive Contact Form */
 @media (max-width: 768px) {
   .contact_container {
     flex-direction: column;
@@ -713,7 +729,6 @@ nav ul li a:hover {
   }
 }
 
-/* Rankings Page */
 .rankings_container {
   max-width: 1000px;
   margin: 50px auto;
@@ -725,6 +740,7 @@ nav ul li a:hover {
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 30px;
+  color: #000;
 }
 
 .rankings_table {
@@ -740,10 +756,11 @@ nav ul li a:hover {
   border: 1px solid;
   border-right: none;
   border-left: none;
+  color: #000;
 }
 
 .rankings_table th {
-  background-color: #1da1f2;
+  background-color: #000;
   color: white;
   font-weight: 600;
 }
@@ -763,8 +780,9 @@ nav ul li a:hover {
   }
 }
 
-/* Vote page */
-
+.container h2 {
+  color: #000;
+}
 .candidate-table {
   width: 100%;
   border-collapse: collapse;
@@ -777,26 +795,20 @@ nav ul li a:hover {
   padding: 2px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  color: #000;
 }
 
 .candidate-table th {
-  background-color: #007bff;
+  background-color: #000;
   color: white;
 }
 
-.candidate-table tr:hover {
-  background-color: #0d1152;
-}
-
-.candidate-table img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
+.candidate-table input {
+  cursor: pointer;
 }
 
 .vote-button {
-  background-color: #1da1f2;
+  background-color: #000;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -807,7 +819,7 @@ nav ul li a:hover {
 }
 
 .vote-button:hover {
-  background-color: #0d1152;
+  background-color: #1da1f2;
 }
 
 .vote_modal {
@@ -824,7 +836,7 @@ nav ul li a:hover {
 
 .vote_modal-content {
   background-color: white;
-  color: #06402B;
+  color: #fff;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -905,7 +917,7 @@ nav ul li a:hover {
 .edit-profile-container .form-group select {
   width: 100%; /* Full width for input fields */
   padding: 0.5rem; /* Reduce padding */
-  border: 1px solid #06402B;
+  border: 1px solid #fff;
   font-size: 0.9rem; /* Reduce font size in input fields */
   transition: border 0.3s;
 }
@@ -920,7 +932,7 @@ nav ul li a:hover {
   width: 100%;
   padding: 0.5rem; /* Reduce button padding */
   border: none;
-  background-color: #1da1f2;
+  background-color: #000;
   color: white;
   font-weight: 600;
   font-size: 1rem; /* Slightly smaller font */
@@ -968,7 +980,7 @@ nav ul li a:hover {
 
 /* Candidate Card */
 .candidate-card {
-  background-color: #06402B;
+  background-color: #fff;
   width: 400px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -985,7 +997,7 @@ nav ul li a:hover {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 4px solid #06402B;
+  border: 4px solid #fff;
   text-align: center;
 }
 
@@ -1047,7 +1059,6 @@ footer {
 body {
   font-size: calc(14px + 0.5vw);
   font-family: 'Poppins', sans-serif;
-  background-color: #06402B;
   color: #fff;
   min-height: 100vh;
   display: flex;
