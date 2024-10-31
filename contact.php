@@ -1,32 +1,18 @@
 <?php
-// contact.php
-
-// Database connection variables
-$servername = "localhost"; // Change if necessary
-$username = "root"; // Replace with your database username
-$password = ""; // Replace with your database password
+$servername = "localhost";
+$username = "root";
+$password = "";
 $dbname = "weDecideDB";
-
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Initialize message variable
 $message = "";
-
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect and sanitize input data
     $name = $conn->real_escape_string(trim($_POST['name']));
     $email = $conn->real_escape_string(trim($_POST['email']));
     $subject = $conn->real_escape_string(trim($_POST['subject']));
     $messageContent = $conn->real_escape_string(trim($_POST['message']));
-
-    // Insert data into the contacts table
     $sql = "INSERT INTO contacts (name, email, subject, message) VALUES ('$name', '$email', '$subject', '$messageContent')";
 
     if ($conn->query($sql) === TRUE) {
@@ -36,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close the database connection
 $conn->close();
 ?>
 
@@ -84,4 +69,3 @@ $conn->close();
     <script src="assets/js/script.js"></script>
 </body>
 </html>
-<?php include('include/footer.php');?>
