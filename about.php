@@ -7,10 +7,8 @@
 
     <section class="about-section">
       <div class="about-container">
-        <div class="about-title">
-          <h2>About</h2>
-        </div>
         <div class="about-content">
+        <h2>ABOUT weDecide</h2>
           <p>
             An online voting system that will replace the old ballot system or
             paper system. Over the time we have utilized the required technology
@@ -27,4 +25,4 @@
     <script src="assets/js/script.js"></script>
   </body>
 </html>
-<?php include('include/footer.php');?>
+
