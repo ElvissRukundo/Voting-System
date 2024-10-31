@@ -21,10 +21,8 @@ $username = "root";
 $password = "";
 $dbname = "weDecideDB";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -35,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $voter_id = $_POST['voter_id'];
     $password = $_POST['password'];
 
-    // Prepare and execute the SQL query to find the user by voter ID
     $stmt = $conn->prepare("SELECT id, password, first_name, last_name, gender, dob, phone, email, nin FROM voters WHERE voter_id = ?");
     $stmt->bind_param("s", $voter_id);
     $stmt->execute();
@@ -45,9 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->num_rows > 0) {
         $stmt->fetch();
         
-        // Verify the entered password with the hashed password in the database
         if (password_verify($password, $hashed_password)) {
-            // Password is correct, set session variables and redirect to home.php
             $_SESSION['user_id'] = $user_id;
             $_SESSION['first_name'] = $first_name;
             $_SESSION['last_name'] = $last_name;
@@ -58,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['nin'] = $nin;
             $_SESSION['voter_id'] = $voter_id;
 
-            // Redirect to home.php after successful login
             header("Location: home.php");
             exit;
         } else {
@@ -102,4 +96,3 @@ $conn->close();
   </body>
 </html>
 
-<?php include('include/footer.php');?>
