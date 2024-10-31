@@ -23,17 +23,15 @@ $username = "root";
 $password = "";
 $dbname = "weDecideDB";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 $voter_id = '';
-$showModal = false; // Track whether to show modal
-$error_message = ''; // For error messages
+$showModal = false;
+$error_message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $first_name = trim($_POST['first-name']);
@@ -45,20 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $phone = trim($_POST['phone']);
   $password = $_POST['password'];
   $confirm_password = $_POST['confirm-password'];
-
-  // File upload handling for profile picture
+  
   $profile_pic = '';
   if (isset($_FILES['profile-pic']) && $_FILES['profile-pic']['error'] == 0) {
-      $target_dir = "admin/uploads/"; // Directory where the file will be saved
+      $target_dir = "admin/uploads/";
       $target_file = $target_dir . basename($_FILES["profile-pic"]["name"]);
       $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-      // Allow certain file formats
       $allowed_types = ['jpg', 'jpeg', 'png'];
       if (in_array($imageFileType, $allowed_types)) {
-          // Move the uploaded file to the target directory
           if (move_uploaded_file($_FILES["profile-pic"]["tmp_name"], $target_file)) {
-              $profile_pic = $target_file; // Save the path to the file in the database
+              $profile_pic = $target_file;
           } else {
               $error_message = "Sorry, there was an error uploading your file.";
           }
@@ -69,7 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $error_message = "Please upload a profile picture.";
   }
 
-  // Calculate the user's age
   $today = new DateTime();
   $birth_date = new DateTime($dob);
   $age = $today->diff($birth_date)->y;
@@ -78,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $error_message = "You must be at least 18 years old to register.";
   }
 
-  // Gender and NIN validation
   if (empty($error_message)) {
       if ($gender == "female" && strpos($nin, "CF") !== 0) {
           $error_message = "Invalid NIN format.";
@@ -87,12 +80,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
   }
 
-  // Password confirmation
   if ($password !== $confirm_password) {
       $error_message = "Passwords do not match.";
   }
 
-  // Check if NIN, email, or phone number already exists in the database
   if (empty($error_message)) {
       $stmt = $conn->prepare("SELECT * FROM voters WHERE nin = ? OR email = ? OR phone = ?");
       $stmt->bind_param("sss", $nin, $email, $phone);
@@ -105,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt->close();
   }
 
-  // Generate voter ID and insert into the database
   if (empty($error_message)) {
       $voter_id = $nin[12] . $nin[5] . $nin[8] . $nin[1] . $nin[10] . $nin[3];
       $stmt = $conn->prepare("INSERT INTO voters (first_name, last_name, dob, gender, nin, profile_pic, email, phone, password, voter_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -191,37 +181,32 @@ $conn->close();
     </div>
 </div>
 
-<!-- Modal -->
 <div id="myModal" class="modal <?php if ($showModal) echo 'show'; ?>">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Registration Successful!</h2>
+        <h6>Registration Successful!</h6>
         <p>Your Voter ID is: <strong><?php echo htmlspecialchars($voter_id); ?></strong></p>
         <p>Keep it safe for your next login.</p>
+        <br>
         <a href="login.php">Login Now</a>
     </div>
 </div>
 
 <script>
-    // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
 
-    // Show the modal if needed
     <?php if ($showModal) { ?>
         modal.style.display = "block";
     <?php } ?>
@@ -229,4 +214,3 @@ $conn->close();
 
 </body>
 </html> 
-<?php include('include/footer.php');?>
