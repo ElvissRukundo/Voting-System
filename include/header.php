@@ -14,7 +14,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-    <!-- Header with navigation -->
     <header>
       <nav>
         <h1 class="logo">weDecide</h1>
@@ -25,7 +24,6 @@
           <li><a href="contact.php">Contact</a></li>
           <li><a href="about.php">About</a></li>
         </ul>
-        <!-- Burger icon for mobile screens -->
         <div class="burger" onclick="toggleMenu()">&#9776;</div>
       </nav>
     </header>
