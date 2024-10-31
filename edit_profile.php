@@ -1,37 +1,26 @@
 <?php
 session_start();
-
-// Redirect if not logged in
 if (!isset($_SESSION['voter_id'])) {
     header("Location: login.php");
     exit();
 }
-
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "weDecideDB";
-
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Fetch user data from the database
 $voter_id = $_SESSION['voter_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get posted data
+
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Check if the email already exists for another user
     $check_email_stmt = $conn->prepare("SELECT voter_id FROM voters WHERE email = ? AND voter_id != ?");
     $check_email_stmt->bind_param("si", $email, $voter_id);
     $check_email_stmt->execute();
@@ -40,15 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($check_email_stmt->num_rows > 0) {
         echo "Email already exists! Please use a different email.";
     } else {
-        // Update query for phone and email
         $stmt = $conn->prepare("UPDATE voters SET phone = ?, email = ? WHERE voter_id = ?");
         $stmt->bind_param("ssi", $phone, $email, $voter_id);
         if (!$stmt->execute()) {
             echo "Error updating phone and email: " . $stmt->error;
         }
         $stmt->close();
-
-        // Update password if provided
         if (!empty($new_password)) {
             if ($new_password === $confirm_password) {
                 $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
@@ -62,14 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "Passwords do not match!";
             }
         }
-
-        // Redirect to home after updating
         header("Location: home.php");
         exit();
     }
     $check_email_stmt->close();
 } else {
-    // Fetch user data for displaying in the form
     $stmt = $conn->prepare("SELECT first_name, last_name, gender, dob, phone, email, nin FROM voters WHERE voter_id = ?");
     $stmt->bind_param("s", $voter_id);
     $stmt->execute();
@@ -118,7 +101,7 @@ $conn->close();
                 </div>
             </div><div class="form-group full-width">
     <label for="profile_picture">Upload Profile Picture:</label>
-    <input type="file" id="profile_picture" name="profile_picture" disabled/>
+    <input type="file" id="profile_picture" name="profile_picture" required/>
 </div>
 
 <div class="form-group full-width">
@@ -155,4 +138,3 @@ $conn->close();
     <script src="assets/js/script.js"></script>
 </body>
 </html>
-<?php include('include/footer.php');?>
