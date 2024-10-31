@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 if (isset($_POST['candidate_id'])) {
     $candidate_id = $_POST['candidate_id'];
-    $user_id = $_SESSION['user_id']; // Get user ID from session
+    $user_id = $_SESSION['user_id'];
 
     $candidate_sql = "SELECT candidates_name FROM candidates WHERE id = ?";
     $stmt = $conn->prepare($candidate_sql);
@@ -24,7 +24,6 @@ if (isset($_POST['candidate_id'])) {
         $candidate_row = $candidate_result->fetch_assoc();
         $candidates_name = $candidate_row['candidates_name'];
 
-        // Check if the user has already voted
         $check_vote_sql = "SELECT * FROM votes WHERE user_id = ?";
         $stmt = $conn->prepare($check_vote_sql);
         $stmt->bind_param("i", $user_id);
@@ -37,7 +36,6 @@ if (isset($_POST['candidate_id'])) {
         if ($result->num_rows > 0) {
             $_SESSION['vote_error'] = "You have already voted.";
         } else {
-            // Insert vote
             $vote_sql = "INSERT INTO votes (user_id, candidates_name) VALUES (?, ?)";
             $stmt = $conn->prepare($vote_sql);
             $stmt->bind_param("is", $user_id, $candidates_name);
