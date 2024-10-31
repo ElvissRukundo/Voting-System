@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   <body>
     <div class="container">
-      WELCOME TO weDecide - YOUR VOTE MATTERS
+      <h1>WELCOME TO weDecide - YOUR VOTE MATTERS</h1>
       <div class="content">
         <div class="image-section">
           <img src="assets/images/vote.png" alt="Let's Vote Image" />
@@ -32,4 +32,3 @@
     <script src="assets/js/script.js"></script>
   </body>
 </html>
-<?php include('include/footer.php');?>
